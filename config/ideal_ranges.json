@@ -1,0 +1,86 @@
+{
+    "left_knee_angle": {
+        "min": 110,
+        "max": 170,
+        "unit": "degrees",
+        "description": "Knee should be bent but not collapsed. 180=straight, lower=more bent.",
+        "severity_thresholds": { "medium": 15, "high": 30 }
+    },
+    "right_knee_angle": {
+        "min": 110,
+        "max": 170,
+        "unit": "degrees",
+        "description": "Knee should be bent but not collapsed.",
+        "severity_thresholds": { "medium": 15, "high": 30 }
+    },
+    "left_hip_angle": {
+        "min": 90,
+        "max": 170,
+        "unit": "degrees",
+        "description": "Hip flexion for athletic stance. Too low = folding at waist.",
+        "severity_thresholds": { "medium": 15, "high": 25 }
+    },
+    "right_hip_angle": {
+        "min": 90,
+        "max": 170,
+        "unit": "degrees",
+        "description": "Hip flexion for athletic stance.",
+        "severity_thresholds": { "medium": 15, "high": 25 }
+    },
+    "left_elbow_angle": {
+        "min": 100,
+        "max": 180,
+        "unit": "degrees",
+        "description": "Arms should not be overly bent/tense while surfing.",
+        "severity_thresholds": { "medium": 20, "high": 40 }
+    },
+    "right_elbow_angle": {
+        "min": 100,
+        "max": 180,
+        "unit": "degrees",
+        "description": "Arms should not be overly bent/tense.",
+        "severity_thresholds": { "medium": 20, "high": 40 }
+    },
+    "left_arm_raise": {
+        "min": 20,
+        "max": 120,
+        "unit": "degrees",
+        "description": "Arms raised for balance but not overhead. 0=arms at side, 180=overhead.",
+        "severity_thresholds": { "medium": 15, "high": 30 }
+    },
+    "right_arm_raise": {
+        "min": 20,
+        "max": 120,
+        "unit": "degrees",
+        "description": "Arms raised for balance.",
+        "severity_thresholds": { "medium": 15, "high": 30 }
+    },
+    "shoulder_tilt": {
+        "min": 70,
+        "max": 110,
+        "unit": "degrees",
+        "description": "Shoulders should be roughly level. 90=perfectly horizontal.",
+        "severity_thresholds": { "medium": 10, "high": 20 }
+    },
+    "spinal_angle": {
+        "min": 0,
+        "max": 35,
+        "unit": "degrees",
+        "description": "Forward lean of torso from vertical. 0=upright, higher=more lean.",
+        "severity_thresholds": { "medium": 10, "high": 20 }
+    },
+    "head_forward_offset": {
+        "min": -0.15,
+        "max": 0.15,
+        "unit": "meters",
+        "description": "Head should be centered over shoulders, not jutting forward.",
+        "severity_thresholds": { "medium": 0.05, "high": 0.10 }
+    },
+    "stance_width_ratio": {
+        "min": 1.5,
+        "max": 3.0,
+        "unit": "ratio",
+        "description": "Feet should be shoulder-to-hip width apart or slightly wider.",
+        "severity_thresholds": { "medium": 0.5, "high": 1.0 }
+    }
+}

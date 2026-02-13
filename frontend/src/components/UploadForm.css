@@ -1,0 +1,528 @@
+/* ========================================
+   UPLOAD FORM - "The Paddle Out"
+   Bold, striking surf aesthetic
+   ======================================== */
+
+.upload-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ----------------------------------------
+   HEADER & BRANDING
+   ---------------------------------------- */
+
+.upload-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+
+  /* Golden hour gradient */
+  background: linear-gradient(
+    135deg,
+    var(--golden-core) 0%,
+    var(--golden-heat) 40%,
+    var(--golden-glow) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  /* Glow effect */
+  filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.3));
+}
+
+.brand-underline {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--golden-core) 20%,
+    var(--golden-heat) 50%,
+    var(--golden-core) 80%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.upload-subtitle {
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+
+/* ----------------------------------------
+   DROP ZONE
+   ---------------------------------------- */
+
+.drop-zone {
+  position: relative;
+  border: 2px dashed var(--barrel-foam);
+  border-radius: var(--radius-xl);
+  padding: 56px 32px;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(
+    180deg,
+    var(--barrel-mid) 0%,
+    var(--barrel-surface) 100%
+  );
+  overflow: hidden;
+  transition: all 0.4s var(--ease-swell);
+
+  /* Glassmorphism */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.drop-zone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.03) 0%,
+    transparent 50%,
+    rgba(13, 115, 119, 0.03) 100%
+  );
+  pointer-events: none;
+}
+
+.drop-zone:hover,
+.drop-zone--active {
+  border-color: var(--golden-core);
+  background: linear-gradient(
+    180deg,
+    var(--barrel-surface) 0%,
+    var(--barrel-foam) 100%
+  );
+  box-shadow:
+    0 0 0 4px rgba(255, 107, 53, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.drop-zone--has-file {
+  border-color: var(--clean-swell);
+  border-style: solid;
+}
+
+.drop-zone--has-file::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--clean-swell), var(--reef-bright));
+}
+
+/* Wave animation at bottom */
+.drop-zone__wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.drop-zone__wave svg {
+  width: 200%;
+  height: 100%;
+  animation: wave-crawl 8s linear infinite;
+}
+
+.drop-zone__wave path {
+  fill: var(--reef-deep);
+  opacity: 0.15;
+}
+
+.drop-zone:hover .drop-zone__wave path,
+.drop-zone--active .drop-zone__wave path {
+  fill: var(--golden-core);
+  opacity: 0.2;
+}
+
+/* Icon wrapper */
+.drop-zone__icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--barrel-foam) 0%,
+    var(--barrel-surface) 100%
+  );
+  color: var(--reef-bright);
+  margin-bottom: 16px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.drop-zone__icon-wrapper--success {
+  background: linear-gradient(
+    135deg,
+    var(--clean-swell) 0%,
+    var(--reef-deep) 100%
+  );
+  color: white;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Prompt state */
+.drop-zone__prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.drop-zone__text {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.drop-zone__or {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--golden-heat);
+  font-weight: 500;
+}
+
+.drop-zone__formats {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: var(--barrel-deep);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.drop-zone__formats svg {
+  color: var(--reef-bright);
+}
+
+/* File selected state */
+.drop-zone__file-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.drop-zone__filename {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  word-break: break-all;
+  max-width: 100%;
+}
+
+.drop-zone__size {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--clean-swell);
+  font-weight: 500;
+}
+
+.drop-zone__change {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ----------------------------------------
+   UPLOAD INFO
+   ---------------------------------------- */
+
+.upload-formats {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+
+/* ----------------------------------------
+   FORM FIELDS
+   ---------------------------------------- */
+
+.form-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.form-group label svg {
+  color: var(--reef-bright);
+}
+
+.optional-tag {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: auto;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--barrel-foam);
+  border-radius: var(--radius-lg);
+  background: var(--barrel-mid);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all 0.3s var(--ease-swell);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  border-color: var(--reef-deep);
+  background: var(--barrel-surface);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--golden-core);
+  background: var(--barrel-surface);
+  box-shadow:
+    0 0 0 3px rgba(255, 107, 53, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.form-group select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 256 256'%3E%3Cpath fill='%2314a3a8' d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 44px;
+}
+
+/* ----------------------------------------
+   ERROR MESSAGE
+   ---------------------------------------- */
+
+.upload-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  background: rgba(230, 57, 70, 0.1);
+  border: 1px solid rgba(230, 57, 70, 0.3);
+  border-radius: var(--radius-lg);
+  color: var(--wipeout);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  overflow: hidden;
+}
+
+.upload-error svg {
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------
+   SUBMIT BUTTON
+   ---------------------------------------- */
+
+.submit-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 24px;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--golden-core) 0%,
+    var(--golden-heat) 100%
+  );
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s var(--ease-swell);
+  box-shadow:
+    0 4px 16px rgba(255, 107, 53, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:hover:not(:disabled) {
+  box-shadow:
+    0 8px 32px rgba(255, 107, 53, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.submit-btn__text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Shimmer effect */
+.submit-btn__shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.submit-btn:hover:not(:disabled) .submit-btn__shimmer {
+  animation: shimmer 1.5s ease-in-out;
+}
+
+/* Loader */
+.submit-btn__loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple-expand 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ----------------------------------------
+   RESPONSIVE
+   ---------------------------------------- */
+
+@media (max-width: 600px) {
+  .upload-form {
+    padding: 32px 16px;
+  }
+
+  .brand-title {
+    font-size: 3rem;
+  }
+
+  .upload-subtitle {
+    font-size: 1rem;
+  }
+
+  .drop-zone {
+    padding: 40px 20px;
+  }
+
+  .form-fields {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .drop-zone__icon-wrapper {
+    width: 72px;
+    height: 72px;
+  }
+
+  .drop-zone__icon-wrapper svg {
+    width: 40px;
+    height: 40px;
+  }
+}

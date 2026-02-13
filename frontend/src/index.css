@@ -1,0 +1,471 @@
+/* ========================================
+   SOULSURFER DESIGN SYSTEM
+   "The Barrel" - Bold, Striking, Anti-AI-Slop
+   ======================================== */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ========================================
+     COLOR SYSTEM: THE BARREL
+     ======================================== */
+
+  /* PRIMARY: Deep Barrel - The dark inside of a wave */
+  --barrel-deep: #0a1a1f;
+  --barrel-mid: #12292f;
+  --barrel-surface: #1a3a42;
+  --barrel-foam: #234d57;
+
+  /* ACCENT: Golden Hour - Late afternoon sun hitting water */
+  --golden-core: #ff6b35;
+  --golden-heat: #ff8c42;
+  --golden-glow: #ffc857;
+  --golden-flash: #ffe066;
+
+  /* SECONDARY: Reef - Tropical water over coral */
+  --reef-deep: #0d7377;
+  --reef-bright: #14a3a8;
+  --reef-glow: #32d9d9;
+
+  /* FEEDBACK STATES */
+  --wipeout: #e63946;
+  --caution-current: #f4a261;
+  --clean-swell: #2a9d8f;
+  --flat-spell: #6c757d;
+
+  /* TEXT HIERARCHY */
+  --text-bright: #f8f9fa;
+  --text-standard: #e0e7eb;
+  --text-muted: #7fa8b3;
+  --text-ghost: #4a6f7a;
+
+  /* SPECIAL EFFECTS */
+  --spray-white: rgba(255, 255, 255, 0.95);
+  --foam-overlay: rgba(255, 255, 255, 0.08);
+  --depth-shadow: rgba(0, 0, 0, 0.4);
+
+  /* GRADIENTS */
+  --barrel-gradient: linear-gradient(135deg, var(--barrel-deep) 0%, var(--barrel-mid) 40%, var(--reef-deep) 100%);
+  --sunrise-gradient: linear-gradient(135deg, var(--golden-core) 0%, var(--golden-heat) 50%, var(--golden-glow) 100%);
+  --reef-gradient: linear-gradient(135deg, var(--reef-deep) 0%, var(--reef-bright) 100%);
+
+  /* Legacy mappings for compatibility */
+  --color-bg: var(--barrel-deep);
+  --color-surface: var(--barrel-surface);
+  --color-surface-hover: var(--barrel-foam);
+  --color-accent: var(--golden-core);
+  --color-accent-hover: var(--golden-heat);
+  --color-text: var(--text-standard);
+  --color-text-muted: var(--text-muted);
+  --color-success: var(--clean-swell);
+  --color-warning: var(--caution-current);
+  --color-danger: var(--wipeout);
+  --color-low: var(--reef-bright);
+  --color-border: var(--reef-deep);
+  --color-primary: var(--reef-glow);
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-heading: 'Space Grotesk', 'Arial', sans-serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  /* TYPE SCALE */
+  --text-hero: clamp(3.5rem, 8vw, 6rem);
+  --text-display: clamp(2rem, 5vw, 3.5rem);
+  --text-heading: clamp(1.25rem, 3vw, 1.75rem);
+  --text-subhead: clamp(1rem, 2vw, 1.25rem);
+  --text-body-size: clamp(0.9rem, 1.5vw, 1rem);
+  --text-small: clamp(0.75rem, 1.2vw, 0.85rem);
+  --text-micro: clamp(0.65rem, 1vw, 0.75rem);
+
+  /* LETTER SPACING */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-ultra: 0.15em;
+
+  /* LINE HEIGHT */
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --leading-loose: 1.8;
+
+  /* ========================================
+     MOTION
+     ======================================== */
+
+  --ease-swell: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-break: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-chop: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-glass: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  --duration-instant: 100ms;
+  --duration-quick: 200ms;
+  --duration-normal: 350ms;
+  --duration-slow: 500ms;
+  --duration-dramatic: 800ms;
+
+  /* ========================================
+     SPACING & SIZING
+     ======================================== */
+
+  --radius: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 30px rgba(50, 217, 217, 0.2);
+}
+
+/* ========================================
+   BASE RESET & GLOBAL STYLES
+   ======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  background: var(--barrel-gradient);
+  background-attachment: fixed;
+  color: var(--text-standard);
+  line-height: var(--leading-normal);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   TYPOGRAPHY DEFAULTS
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  color: var(--text-bright);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--text-heading);
+}
+
+h3 {
+  font-size: var(--text-subhead);
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+strong {
+  color: var(--golden-glow);
+  font-weight: 600;
+}
+
+/* ========================================
+   INTERACTIVE ELEMENTS
+   ======================================== */
+
+button {
+  font-family: var(--font-heading);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--duration-quick) var(--ease-break);
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+  outline: none;
+}
+
+a {
+  color: var(--reef-glow);
+  text-decoration: none;
+  transition: color var(--duration-quick) var(--ease-glass);
+}
+
+a:hover {
+  color: var(--golden-glow);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.text-gradient {
+  background: var(--sunrise-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes surface {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes duck-dive {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes blob-morph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    border-radius: 50% 60% 30% 60% / 30% 40% 60% 70%;
+  }
+  75% {
+    border-radius: 60% 40% 60% 30% / 70% 60% 40% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+  }
+}
+
+@keyframes wave-crawl {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 600px;
+  }
+}
+
+@keyframes barrel-expand {
+  0% {
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    border-width: 3px;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    width: 150vmax;
+    height: 150vmax;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@keyframes barrel-roll {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.barrel-roll {
+  animation: barrel-roll 1.5s ease-in-out;
+}
+
+/* ========================================
+   SCROLLBAR STYLING
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--barrel-mid);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--reef-deep);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--reef-bright);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--reef-deep) var(--barrel-mid);
+}
+
+/* ========================================
+   SELECTION STYLING
+   ======================================== */
+
+::selection {
+  background: var(--golden-core);
+  color: var(--barrel-deep);
+}
+
+::-moz-selection {
+  background: var(--golden-core);
+  color: var(--barrel-deep);
+}
+
+/* ========================================
+   FOCUS STATES
+   ======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--reef-glow);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   RIPPLE EFFECT
+   ======================================== */
+
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-expand 0.6s ease-out forwards;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(20, 163, 168, 0.2) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+@keyframes ripple-expand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

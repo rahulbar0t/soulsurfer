@@ -1,0 +1,358 @@
+/* ========================================
+   ERROR CARD - "Wipeout Report"
+   Severity-based theming with glow effects
+   ======================================== */
+
+.error-card {
+  position: relative;
+  background: var(--barrel-mid);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid var(--barrel-foam);
+  overflow: hidden;
+  transition: all 0.3s var(--ease-swell);
+}
+
+.error-card:hover {
+  border-color: var(--barrel-foam);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Severity glow bar at top */
+.error-card__glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+
+/* Severity-based theming */
+.error-card--low .error-card__glow {
+  background: var(--clean-swell);
+  box-shadow: 0 2px 12px rgba(42, 157, 143, 0.4);
+}
+
+.error-card--medium .error-card__glow {
+  background: var(--caution-current);
+  box-shadow: 0 2px 12px rgba(244, 162, 97, 0.4);
+}
+
+.error-card--high .error-card__glow {
+  background: var(--wipeout);
+  box-shadow: 0 2px 12px rgba(230, 57, 70, 0.4);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Expanded card for clip display */
+.error-card--expanded {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .error-card--expanded {
+    grid-column: span 1;
+  }
+}
+
+/* ----------------------------------------
+   HEADER
+   ---------------------------------------- */
+
+.error-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.error-card__metric {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ----------------------------------------
+   VIDEO COMPARISON
+   ---------------------------------------- */
+
+.error-card__comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 4px 0;
+}
+
+@media (max-width: 600px) {
+  .error-card__comparison {
+    grid-template-columns: 1fr;
+  }
+}
+
+.error-card__clip-container,
+.error-card__reference-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.error-card__clip-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.error-card__clip-label svg {
+  color: var(--reef-bright);
+}
+
+.error-card__video-wrapper {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16 / 9;
+  background: var(--barrel-deep);
+  border: 1px solid var(--barrel-foam);
+}
+
+.error-card__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.error-card__play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  transition: background 0.2s;
+}
+
+.error-card__video-wrapper:hover .error-card__play-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.error-card__play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--golden-core), var(--golden-heat));
+  color: white;
+  box-shadow:
+    0 4px 16px rgba(255, 107, 53, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.error-card__clip-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--wipeout);
+  font-weight: 500;
+}
+
+.error-card__clip-value svg {
+  color: var(--text-muted);
+}
+
+.error-card__reference-wrapper {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--barrel-surface);
+  border: 1px solid var(--barrel-foam);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-card__reference-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.error-card__reference-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 16px;
+}
+
+.error-card__reference-placeholder svg {
+  color: var(--reef-deep);
+  opacity: 0.5;
+}
+
+.error-card__reference-tip {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--reef-bright);
+  font-weight: 500;
+}
+
+/* ----------------------------------------
+   VALUES SECTION
+   ---------------------------------------- */
+
+.error-card__values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+  background: var(--barrel-surface);
+  border-radius: var(--radius-lg);
+}
+
+.error-card__measured,
+.error-card__ideal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.error-card__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.error-card__label svg {
+  color: var(--reef-deep);
+}
+
+.error-card__value {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.error-card__value--mono {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+/* ----------------------------------------
+   FREQUENCY BAR
+   ---------------------------------------- */
+
+.error-card__freq {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.error-card__freq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-card__freq-pct {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.error-card__bar-bg {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--barrel-surface);
+  overflow: hidden;
+}
+
+.error-card__bar-fill {
+  position: relative;
+  height: 100%;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.error-card__bar-fill--low {
+  background: linear-gradient(90deg, var(--clean-swell), var(--reef-bright));
+}
+
+.error-card__bar-fill--medium {
+  background: linear-gradient(90deg, var(--golden-heat), var(--caution-current));
+}
+
+.error-card__bar-fill--high {
+  background: linear-gradient(90deg, var(--golden-core), var(--wipeout));
+}
+
+.error-card__bar-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* ----------------------------------------
+   FOOTER
+   ---------------------------------------- */
+
+.error-card__footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--barrel-foam);
+}
+
+.error-card__footer-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.error-card__footer-item svg {
+  color: var(--reef-deep);
+}

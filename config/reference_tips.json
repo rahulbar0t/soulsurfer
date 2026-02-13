@@ -1,0 +1,62 @@
+{
+  "left_knee_angle": {
+    "title": "Proper Knee Bend",
+    "tip": "Keep knees bent 110-170° for stability. Avoid locking out or over-bending.",
+    "image": "/references/left_knee_angle.png"
+  },
+  "right_knee_angle": {
+    "title": "Proper Knee Bend",
+    "tip": "Keep knees bent 110-170° for stability. Avoid locking out or over-bending.",
+    "image": "/references/right_knee_angle.png"
+  },
+  "left_hip_angle": {
+    "title": "Hip Hinge Position",
+    "tip": "Maintain 90-170° hip angle. Don't fold forward at the waist.",
+    "image": "/references/left_hip_angle.png"
+  },
+  "right_hip_angle": {
+    "title": "Hip Hinge Position",
+    "tip": "Maintain 90-170° hip angle. Don't fold forward at the waist.",
+    "image": "/references/right_hip_angle.png"
+  },
+  "left_elbow_angle": {
+    "title": "Relaxed Arms",
+    "tip": "Keep elbows soft (100-180°). Tense arms reduce balance.",
+    "image": "/references/left_elbow_angle.png"
+  },
+  "right_elbow_angle": {
+    "title": "Relaxed Arms",
+    "tip": "Keep elbows soft (100-180°). Tense arms reduce balance.",
+    "image": "/references/right_elbow_angle.png"
+  },
+  "left_arm_raise": {
+    "title": "Arm Position for Balance",
+    "tip": "Arms at 20-120° from body. Use for balance, not overhead.",
+    "image": "/references/left_arm_raise.png"
+  },
+  "right_arm_raise": {
+    "title": "Arm Position for Balance",
+    "tip": "Arms at 20-120° from body. Use for balance, not overhead.",
+    "image": "/references/right_arm_raise.png"
+  },
+  "shoulder_tilt": {
+    "title": "Level Shoulders",
+    "tip": "Keep shoulders roughly horizontal (70-110°). Excessive tilt indicates imbalance.",
+    "image": "/references/shoulder_tilt.png"
+  },
+  "spinal_angle": {
+    "title": "Upright Posture",
+    "tip": "Stay within 0-35° from vertical. Excessive forward lean reduces control.",
+    "image": "/references/spinal_angle.png"
+  },
+  "head_forward_offset": {
+    "title": "Head Position",
+    "tip": "Keep head centered over shoulders. Forward head position affects balance.",
+    "image": "/references/head_forward_offset.png"
+  },
+  "stance_width_ratio": {
+    "title": "Stance Width",
+    "tip": "Feet 1.5-3x hip width apart. Too narrow = unstable. Too wide = restricted.",
+    "image": "/references/stance_width_ratio.png"
+  }
+}
